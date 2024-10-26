@@ -7,6 +7,7 @@ npm init
 npm i express mongoose
 npm i jsonwebtoken cookie-parser bcrypt
 npm i multer
+npm i debug
 ```
 
 usermodel
