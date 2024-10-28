@@ -11,6 +11,8 @@ npm i multer
 npm i debug
 npm i config
 npm i jsonwebtoken bcrypt dotenv
+npm install express-session connect-flash
+
 ```
 
 [![Video Thumbnail](https://img.youtube.com/vi/sEZ1lul6GpI/0.jpg)](https://youtu.be/sEZ1lul6GpI?si=8mf8dQXdo0K76J-d)
@@ -163,7 +165,52 @@ app.use((req, res, next) => {
 <% } %>
 ```
 
+The options `resave`, `saveUninitialized`, and `cookie` are configuration settings for the `express-session` middleware in Express.js. Here's what each of them does:
 
+### 1. `resave`
+- **Description**: This option determines whether to save the session back to the session store, even if the session was never modified during the request.
+- **Default Value**: `true`
+- **When Set to `false`**: 
+  - If the session is unchanged, it will not be saved again. This can help reduce the number of writes to the session store, improving performance.
+- **When Set to `true`**: 
+  - The session will be saved back to the store on every request, which can be unnecessary if the session hasn’t changed.
+
+### 2. `saveUninitialized`
+- **Description**: This option controls whether to save uninitialized sessions to the session store. An uninitialized session is a new session that has not been modified.
+- **Default Value**: `true`
+- **When Set to `false`**: 
+  - Uninitialized sessions will not be saved to the store. This can help reduce storage usage, especially if your application doesn’t require the session until it is modified.
+- **When Set to `true`**: 
+  - New sessions will be saved to the store, which can lead to a lot of empty sessions if users visit the site but don’t interact with it.
+
+### 3. `cookie`
+- **Description**: This option allows you to configure the cookie settings for the session.
+- **Default Value**: `{}` (empty object)
+- **When Set to `{ secure: false }`**:
+  - The session cookie can be transmitted over both HTTP and HTTPS. This is usually not secure because it allows cookies to be sent over unencrypted connections.
+- **When Set to `{ secure: true }`**:
+  - The session cookie will only be sent over HTTPS connections. This is a good practice for production environments where security is a concern.
+
+### Summary of Implications
+- **If `resave` is `true`**: It can lead to unnecessary writes to the session store, which might impact performance.
+- **If `saveUninitialized` is `true`**: It can increase storage use if many unmodified sessions are created.
+- **If `cookie.secure` is `false`**: It can expose your session cookie to potential interception over non-secure connections, making your application vulnerable to session hijacking attacks.
+
+### Recommended Settings for Production
+In a production environment, it's common to set:
+- `resave: false` (to avoid unnecessary session store updates)
+- `saveUninitialized: false` (to avoid saving empty sessions)
+- `cookie: { secure: true }` (to ensure cookies are only sent over HTTPS)
+
+### Example Configuration
+```javascript
+app.use(session({
+    secret: 'your_secret_key',
+    resave: false,
+    saveUninitialized: false,
+    cookie: { secure: true } // Use true in production with HTTPS
+}));
+``` 
 
 
 https://www.npmjs.com/package/bcrypt

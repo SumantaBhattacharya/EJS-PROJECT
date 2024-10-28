@@ -44,11 +44,7 @@ module.exports = async (req, res, next) => {
     /*const user = await userModel.findById(req.userId)
     if (!user) return res.status(403).send("Access denied. User not found.")*/
 
-    const user = await userModel
-      .findOne({
-        email: decoded.email,
-      })
-      .select("-password");
+    const user = await userModel.findOne({email: decoded.email}).select("-password");
 
     if (!user) {
       req.flash("error", "Access denied. User not found.");

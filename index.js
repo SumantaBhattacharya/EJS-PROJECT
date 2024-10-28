@@ -13,6 +13,9 @@ const usersRouter = require("./routes/usersRouter")
 const productsRouter = require("./routes/productsRouter")
 const indexRouter = require("./routes/index")
 
+const session = require('express-session');
+const flash = require('connect-flash');
+
 require('dotenv').config();
 
 // Middleware
@@ -22,6 +25,31 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(express.static(path.join(__dirname,"public")));
 app.set("view engine", "ejs");
+
+/*app.use(session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: false }
+}));*/
+
+// Initialize session middleware
+app.use(session({
+    secret: process.env.EXPRESS_SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false,
+    //cookie: { secure: false } // Change to true in production with HTTPS
+}));
+
+// Initialize flash
+app.use(flash());
+
+// Middleware to make flash messages accessible in views
+app.use((req, res, next) => {
+    res.locals.success_msg = req.flash('success_msg');
+    res.locals.error_msg = req.flash('error_msg');
+    next();
+});
 
 app.use("/owners", ownersRouter);
 // C:\Users\SUDIP BHATTACHARYA\Desktop\EJS PROJECT\SCATCH\routes\ownersRouter.js
