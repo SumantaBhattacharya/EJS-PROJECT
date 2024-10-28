@@ -3,9 +3,14 @@ const mongoose = require("mongoose")
 // mongoose.connect("mongodb://localhost/myDatabase", { useNewUrlParser: true, useUnifiedTopology: true })
 
 const adminSchema = mongoose.Schema({
-    fullname: String,
+    fullname: {
+        type: String,
+        minLength: 3,
+        trim: true,
+        required: true
+    },
     email: String,
-    password: Number,
+    password: String,
     products:{
         // type: mongoose.Schema.Types.ObjectId,
         // ref: "Product"

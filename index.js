@@ -11,6 +11,9 @@ const db = require("./config/mongoose-connection")
 const ownersRouter = require("./routes/ownersRouter")
 const usersRouter = require("./routes/usersRouter")
 const productsRouter = require("./routes/productsRouter")
+const indexRouter = require("./routes/index")
+
+require('dotenv').config();
 
 // Middleware
 app.use(cookieParser())
@@ -26,10 +29,7 @@ app.use("/users", usersRouter);
 // C:\Users\SUDIP BHATTACHARYA\Desktop\EJS PROJECT\SCATCH\routes\usersRouter.js
 app.use("/products", productsRouter);
 // C:\Users\SUDIP BHATTACHARYA\Desktop\EJS PROJECT\SCATCH\routes\productsRouter.js
-
-// app.get("/", (req, res) => {
-//     res.send("hey")
-// });
+app.use("/", indexRouter);
 
 const port = process.env.PORT || 8000;
 
