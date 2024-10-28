@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-const {registerUser} = require("../controllers/authController")
+const {registerUser,loginUser,logoutUser} = require("../controllers/authController")
 
 // const app = express();
 
@@ -14,4 +14,9 @@ router.get("/", (req, res) => {
 // /users/register the users path is already defined
 router.post("/register", registerUser);
 
+router.post("/login",loginUser)
+
+router.get("/logout",logoutUser)
+
+// Export the router for use in the index.js file
 module.exports = router;

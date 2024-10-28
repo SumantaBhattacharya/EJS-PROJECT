@@ -126,6 +126,46 @@ Set `NODE_ENV` in your terminal before starting the application:
 22. Applying Colors
 
 
+## `Flash messages allow you to store messages in session storage that can be displayed to users on the next request.`
+```bash
+#   Requirements for Using Flash Messages
+  npm install express-session connect-flash
+```
+```js
+  const session = require('express-session');
+  const flash = require('connect-flash');
+
+  // Set up session middleware
+app.use(session({
+    secret: 'your_secret_key', // Replace with a secure random key
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: false } // Set to true if using HTTPS
+}));
+
+// Initialize flash
+app.use(flash());
+
+// Middleware to make flash messages accessible in views
+app.use((req, res, next) => {
+    res.locals.success_msg = req.flash('success_msg');
+    res.locals.error_msg = req.flash('error_msg');
+    next();
+});
+```
+## ***Display Flash Messages in Views: In your EJS templates, you can display flash messages like this:***
+```html
+<% if (success_msg.length > 0) { %>
+    <div class="alert alert-success"><%= success_msg %></div>
+<% } %>
+<% if (error_msg.length > 0) { %>
+    <div class="alert alert-danger"><%= error_msg %></div>
+<% } %>
+```
+
+
+
+
 https://www.npmjs.com/package/bcrypt
 
 [![Backend Project 1 - Part 6 | Scatch | Add to Cart Feature & Nav Feature | Backend Development](https://img.youtube.com/vi/up9db_91qEE/maxresdefault.jpg)](https://youtu.be/up9db_91qEE?si=pnwMNpNOg3DYA3DK)
