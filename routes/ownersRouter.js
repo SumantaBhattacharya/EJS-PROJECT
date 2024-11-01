@@ -42,6 +42,14 @@ router.get("/", (req, res) => {
  res.send("Hello, World!");
 });
 
+// /owners/admin
+// C:\Users\SUDIP BHATTACHARYA\Desktop\EJS PROJECT\SCATCH\views\createproducts.ejs
+// http://localhost:8000/owners/admin
+router.get("/admin",(req,res)=>{
+  res.render("createproducts.ejs")
+  // res.send("Hello, Admin!");
+})
+
 
 module.exports = router
 

@@ -1,11 +1,13 @@
 const jwt = require("jsonwebtoken");
 
+// Middleware to verify JWT token
 const userModel = require("../models/users-model");
 
 // const authenticateToken = async (req, res, next) => {
 // module.exports.authenticateToken
 
 module.exports = async (req, res, next) => {
+
   // Gather the token from the request header
   //  const token = req.headers.authorization.split(" ")[1]
 
@@ -19,10 +21,9 @@ module.exports = async (req, res, next) => {
 
   try {
     // Verify the token using the secret key
-    // const decoded = jwt.verify(token, process.env.SECRET_KEY)
-
-    const decoded = jwt.verify(req.cookies.token, process.env.JWT_KEY);
-
+    const verified = jwt.verify(req.cookies.token, process.env.JWT_KEY);
+    // const decoded = jwt.verify(token, process.env.JWT_KEY);
+    
     // If the token is expired, throw an error
     // if (error.name === "TokenExpiredError") {
     //   return res.status(403).send("Access denied. Token has expired.")
@@ -44,22 +45,28 @@ module.exports = async (req, res, next) => {
     /*const user = await userModel.findById(req.userId)
     if (!user) return res.status(403).send("Access denied. User not found.")*/
 
-    const user = await userModel.findOne({email: decoded.email}).select("-password");
+    // Check if the user exists in the database
+    const user = await userModel.findById(verified.user_id).select("-password"); // Accessing user_id from token
+    // const user = await userModel.findOne({email: decoded.email}).select("-password");
 
     if (!user) {
       req.flash("error", "Access denied. User not found.");
+      // console.error("User not found for the token ID:", verified.user_id);
       return res.redirect("/");
     }
 
     // If the user exists, add the user object to the request object
     req.user = user;
-    // If the user exists, continue to the next middleware or route handler
+
+    // Continue to the next middleware or route handler
     next();
   } catch (error) {
+    console.error("Token verification failed:", error); // Log the error
     req.flash("error", "Access denied. Invalid token.");
     res.redirect("/");
   }
 };
+
 
 // Flash messages allow you to store messages in session storage that can be displayed to users on the next request.
 /*

@@ -228,3 +228,5 @@ https://www.npmjs.com/package/bcrypt
 7. Styling the Cart Structure
 8. Adding Products
 9. Calculating the Actual Cost
+
+<!--  -->

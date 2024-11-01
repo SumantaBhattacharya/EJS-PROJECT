@@ -16,7 +16,9 @@ const indexRouter = require("./routes/index")
 const session = require('express-session');
 const flash = require('connect-flash');
 
-require('dotenv').config();
+// require('dotenv').config();
+require('dotenv').config({ path: './.env' });
+//console.log(process.env);  // Check if EXPRESS_SESSION_SECRET is listed here
 
 // Middleware
 app.use(cookieParser())
@@ -40,6 +42,8 @@ app.use(session({
     saveUninitialized: false,
     //cookie: { secure: false } // Change to true in production with HTTPS
 }));
+
+console.log("Session Secret:", process.env.EXPRESS_SESSION_SECRET);
 
 // Initialize flash
 app.use(flash());

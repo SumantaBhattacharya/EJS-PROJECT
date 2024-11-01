@@ -62,11 +62,9 @@ module.exports.registerUser = async (req, res) => {
     res.status(400).json({ message: error.message });
   }
 };
-
 module.exports.loginUser = async (req, res) => {
   try {
     const { email, password } = req.body;
-    // Log inputs
 
     if (!email || !password) {
       return res.status(400).json({ message: "Please fill in all fields" });
@@ -74,33 +72,35 @@ module.exports.loginUser = async (req, res) => {
 
     const user = await userModel.findOne({ email });
 
-    // if no user of such name
+     // if no user of such name
     if (!user) {
       return res.status(401).json({ message: "Invalid email or password" });
     }
 
     // bcrypt.compare has a promise-based form
     // const isMatch = await bcrypt.compare(password, user.password);
-    bcrypt.compare(password, user.password, (err, result) => {
-      if (err) {
-        return res.status(500).json({ message: "Error comparing passwords" });
-      }
-      if (result) {
-        // Generate JWT token
-        let token = generateToken(user);
-        res.cookie("token", token, { httpOnly: true, secure: true });
-        return res.status(200).json({ message: "User logged in successfully!" });
-      }else{
-        return res.status(401).json({ message: "Invalid username or password" });
-      }
-    });
+
+    // Using promise-based bcrypt.compare
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (isMatch) {
+      // Generate JWT token
+      const token = generateToken(user);
+      res.cookie("token", token, { httpOnly: true, secure: false }); // Change secure to false for local testing
+      req.flash("success_msg", "User logged in successfully!"); // Flash message for successful login
+      return res.redirect("/shop");
+    } else {
+      req.flash("error_msg", "Invalid email or password");
+      return res.redirect("/"); // Redirect to home route
+      // return res.status(401).json({ message: "Invalid username or password" });
+    }
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: "An error occurred while logging in" });
+    req.flash("error_msg", "An error occurred while logging in");
+    return res.redirect("/"); // Redirect to home route
+    // return res.status(500).json({ message: "An error occurred while logging in" });
     // res.status(400).json({ message: error.message });
   }
 };
-
 module.exports.logoutUser = async (req, res) => {
     res.clearCookie("token", { httpOnly: true, secure: true }); // Clear the cookie
     res.json({ message: "User logged out successfully!" }); // Respond to the client
