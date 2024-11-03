@@ -1,0 +1,112 @@
+PS C:\Users\SUDIP BHATTACHARYA\Desktop\EJS PROJECT\SCATCH> ls
+
+
+    Directory: C:\Users\SUDIP BHATTACHARYA\Desktop\EJS PROJECT\SCATCH
+
+
+Mode                LastWriteTime         Length Name
+----                -------------         ------ ----
+d-----       01-11-2024     20:13                config
+d-----       28-10-2024     12:53                controllers
+d-----       28-10-2024     14:50                middleweres
+d-----       26-10-2024     16:06                models
+d-----       28-10-2024     15:16                node_modules
+d-----       26-10-2024     14:56                public
+d-----       28-10-2024     09:50                routes
+d-----       28-10-2024     12:39                utils
+d-----       27-10-2024     21:59                views
+-a----       01-11-2024     17:57            163 .env
+-a----       02-11-2024     10:23             57 .gitignore
+-a----       02-11-2024     15:43           2264 index.js
+-a----       01-11-2024     20:06          80172 package-lock.json
+-a----       28-10-2024     15:16            593 package.json
+-a----       02-11-2024     13:36           8431 readme.md
+-a----       01-11-2024     13:26            135 readme.txt
+
+PS C:\Users\SUDIP BHATTACHARYA\Desktop\EJS PROJECT\SCATCH> ls config
+
+
+    Directory: C:\Users\SUDIP BHATTACHARYA\Desktop\EJS PROJECT\SCATCH\config
+
+
+Mode                LastWriteTime         Length Name
+----                -------------         ------ ----
+-a----       27-10-2024     20:10             52 development.json
+-a----       28-10-2024     12:25             38 keys.js
+-a----       27-10-2024     20:37           1150 mongoose-connection.js
+-a----       01-11-2024     20:42            981 multer-config.js
+
+PS C:\Users\SUDIP BHATTACHARYA\Desktop\EJS PROJECT\SCATCH> ls controllers
+
+
+    Directory: C:\Users\SUDIP BHATTACHARYA\Desktop\EJS PROJECT\SCATCH\controllers
+
+
+Mode                LastWriteTime         Length Name
+----                -------------         ------ ----
+-a----       02-11-2024     11:09           4072 authController.js
+
+PS C:\Users\SUDIP BHATTACHARYA\Desktop\EJS PROJECT\SCATCH> ls models
+
+
+    Directory: C:\Users\SUDIP BHATTACHARYA\Desktop\EJS PROJECT\SCATCH\models
+
+
+Mode                LastWriteTime         Length Name
+----                -------------         ------ ----
+-a----       29-10-2024     11:10           2759 admin-model.js
+-a----       01-11-2024     20:12           1372 product-model.js
+-a----       29-10-2024     11:12            705 users-model.js
+
+PS C:\Users\SUDIP BHATTACHARYA\Desktop\EJS PROJECT\SCATCH> ls public
+
+
+    Directory: C:\Users\SUDIP BHATTACHARYA\Desktop\EJS PROJECT\SCATCH\public
+
+
+Mode                LastWriteTime         Length Name
+----                -------------         ------ ----
+d-----       02-11-2024     13:23                images
+d-----       26-10-2024     15:10                javascripts
+d-----       26-10-2024     14:58                stylesheets
+
+PS C:\Users\SUDIP BHATTACHARYA\Desktop\EJS PROJECT\SCATCH> ls routes
+
+
+    Directory: C:\Users\SUDIP BHATTACHARYA\Desktop\EJS PROJECT\SCATCH\routes
+
+
+Mode                LastWriteTime         Length Name
+----                -------------         ------ ----
+-a----       01-11-2024     19:46           1085 index.js
+-a----       02-11-2024     12:04           2683 ownersRouter.js
+-a----       02-11-2024     13:35           2485 productsRouter.js
+-a----       28-10-2024     14:44            599 usersRouter.js
+
+PS C:\Users\SUDIP BHATTACHARYA\Desktop\EJS PROJECT\SCATCH> ls utils
+
+
+    Directory: C:\Users\SUDIP BHATTACHARYA\Desktop\EJS PROJECT\SCATCH\utils
+
+
+Mode                LastWriteTime         Length Name
+----                -------------         ------ ----
+-a----       01-11-2024     18:39            334 generateToken.js
+
+PS C:\Users\SUDIP BHATTACHARYA\Desktop\EJS PROJECT\SCATCH> ls views
+
+
+    Directory: C:\Users\SUDIP BHATTACHARYA\Desktop\EJS PROJECT\SCATCH\views
+
+
+Mode                LastWriteTime         Length Name
+----                -------------         ------ ----
+d-----       27-10-2024     21:56                partials
+-a----       07-06-2024     20:18           6148 .DS_Store
+-a----       07-06-2024     08:27           5397 admin.ejs
+-a----       07-06-2024     08:27           2064 cart.ejs
+-a----       02-11-2024     11:49           3711 createproducts.ejs
+-a----       01-11-2024     19:17           2812 index.ejs
+-a----       07-06-2024     08:27            919 owner-login.ejs
+-a----       02-11-2024     13:41           2992 shop.ejs
+

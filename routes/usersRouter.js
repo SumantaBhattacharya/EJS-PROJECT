@@ -16,6 +16,7 @@ router.post("/register", registerUser);
 
 router.post("/login",loginUser)
 
+// /users/logout the users path is already defined
 router.get("/logout",logoutUser)
 
 // Export the router for use in the index.js file

@@ -26,7 +26,33 @@
     </style>
 </head>
 
-<body class="font-['helvetica_now_display']">
-    <nav class="w-full fixed top-0 left-0 px-5 py-3">
-        <h3 class="text-xl">Scatch</h3>
+<body class="font-['Lora'] bg-gray-100">
+    <nav class="w-full bg-white shadow-md fixed top-0 left-0 px-6 py-4 md:px-10 flex justify-between items-center z-10">
+        <a class="text-2xl font-semibold text-gray-700" href="/">Scatch</a>
+
+        <!-- Mobile Menu Button -->
+        <!-- <button class="block md:hidden text-gray-600 focus:outline-none" id="menu-button">
+            <i class="ri-menu-3-line text-2xl"></i>
+        </button> -->
+
+        <!-- undefined when no value is passed but we are passing false in index.js in the routes so condition is true (!==) it will not be undefined so loggedIn will remain current state which can be true or false in case no value is passed it would have been true -->
+        <% var loggedIn = typeof loggedIn !== "undefined" ? loggedIn : true; %>
+        <% if (loggedIn) { %>
+            <!-- Links Container -->
+            <div id="nav-links" class="hidden md:flex md:gap-8 items-center" style="font-size: 0.8vw;">
+                <a href="/cart" class="text-gray-600 hover:text-blue-800"><i style="font-size: 1.3vw;" class="ri-luggage-cart-fill"></i></a>
+                <a href="#" class="text-gray-600 hover:text-blue-800"><i style="font-size: 1.3vw;" class="ri-account-pin-box-fill"></i></a>
+                <button onclick="window.location.href='/users/logout'"
+                    class="px-4 py-2 text-white hover:text-red-600 transition duration-200 ease-in-out">
+                    <i style="font-size: 1.3vw; border-radius: 10px; border: none; " class="ri-logout-circle-fill"></i>
+                </button>
+            </div>
+        <% } else { %>
+            <div id="nav-links" class="hidden md:flex md:gap-8 items-center">
+                <a href="/" style="font-size: 1.7vw; color: #3B82F6; background-color: white; " class="text-gray-600 hover:text-gray-800"><i class="ri-login-circle-fill"></i></a>
+                <a href="/" style="font-size: 1.7vw; color: #3B82F6; background-color: white; " class="text-gray-600 hover:text-gray-800"><i class="ri-registered-fill"></i></a>
+            </div>
+        <% } %>
     </nav>
+</body>
+</html>

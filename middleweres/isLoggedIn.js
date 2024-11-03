@@ -50,7 +50,7 @@ module.exports = async (req, res, next) => {
     // const user = await userModel.findOne({email: decoded.email}).select("-password");
 
     if (!user) {
-      req.flash("error", "Access denied. User not found.");
+      req.flash("error_msg", "Access denied. User not found.");
       // console.error("User not found for the token ID:", verified.user_id);
       return res.redirect("/");
     }
@@ -62,7 +62,7 @@ module.exports = async (req, res, next) => {
     next();
   } catch (error) {
     console.error("Token verification failed:", error); // Log the error
-    req.flash("error", "Access denied. Invalid token.");
+    req.flash("error_msg", "Access denied. Invalid token.");
     res.redirect("/");
   }
 };

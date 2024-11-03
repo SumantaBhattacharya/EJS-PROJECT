@@ -103,7 +103,8 @@ module.exports.loginUser = async (req, res) => {
 };
 module.exports.logoutUser = async (req, res) => {
     res.clearCookie("token", { httpOnly: true, secure: true }); // Clear the cookie
-    res.json({ message: "User logged out successfully!" }); // Respond to the client
+    res.redirect('/'); // Redirect to the home route
+    //res.json({ message: "User logged out successfully!" }); // Respond to the client
 };
 
 // If your application uses httpOnly and secure attributes when creating the cookie, you should also include them when clearing the cookie to ensure proper handling and security. 

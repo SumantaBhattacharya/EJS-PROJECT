@@ -16,10 +16,10 @@ const userSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    card: {
-        type: [String],  // Change to an array of strings if needed
-        default: []
-    },
+    cart: [{
+        product: { type: mongoose.Schema.Types.ObjectId, ref: 'Product' },
+        quantity: { type: Number, default: 1 }
+    }],    
     orders: {
         type: Array,
         default: []

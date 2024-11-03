@@ -36,18 +36,25 @@ if (process.env.NODE_ENV === "development") {
   });
 }
 
+// http://localhost:8000/owners/
 router.get("/", (req, res) => {
   // res.json({ message: "Hello, World!" });
  //  res.sendFile(__dirname + "/index.html");
- res.send("Hello, World!");
+ //  res.send("Hello, World!");
+ res.redirect("/")
 });
 
 // /owners/admin
 // C:\Users\SUDIP BHATTACHARYA\Desktop\EJS PROJECT\SCATCH\views\createproducts.ejs
 // http://localhost:8000/owners/admin
+// /owners/admin to createproducts.ejs to /products/create
 router.get("/admin",(req,res)=>{
-  res.render("createproducts.ejs")
-  // res.send("Hello, Admin!");
+  // console.log("Success:", req.flash("success_msg"));
+  // console.log("Error:", req.flash("error_msg"));
+  let success_msg = req.flash("success_msg");
+  let error_msg = req.flash("error_msg");
+  res.render("createproducts.ejs", {success_msg,error_msg})
+
 })
 
 

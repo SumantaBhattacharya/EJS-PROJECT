@@ -28,12 +28,9 @@ app.use(express.urlencoded({ extended: true }))
 app.use(express.static(path.join(__dirname,"public")));
 app.set("view engine", "ejs");
 
-/*app.use(session({
-    secret: process.env.SESSION_SECRET,
-    resave: false,
-    saveUninitialized: true,
-    cookie: { secure: false }
-}));*/
+// When rendering your view, ensure that you are not caching it. This can sometimes cause issues with displaying updated messages. 
+// Disable view caching (for development)
+app.set('view cache', false);
 
 // Initialize session middleware
 app.use(session({
@@ -43,7 +40,7 @@ app.use(session({
     //cookie: { secure: false } // Change to true in production with HTTPS
 }));
 
-console.log("Session Secret:", process.env.EXPRESS_SESSION_SECRET);
+// console.log("Session Secret:", process.env.EXPRESS_SESSION_SECRET);
 
 // Initialize flash
 app.use(flash());
@@ -69,3 +66,7 @@ app.listen(port, () => { // middleware
     console.log(`Server running at http://localhost:${port}`);
 });
 
+/*
+$env:NODE_ENV="development"
+$env:DEBUG='development:*'; nodemon index.js
+*/

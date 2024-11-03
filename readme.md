@@ -212,6 +212,30 @@ app.use(session({
 }));
 ``` 
 
+brown
+text #774F3D
+panel #DEBEAE
+bgcolor #F4DDD2
+
+lightblue
+text #48606E
+panel #DEE4EE
+bgcolor #F3F8FB
+
+khaakibrown
+text #5F4A30
+panel #C5B095
+bgcolor #DED0BF
+
+pink
+text #816264
+panel #E3CAC6
+bgcolor #F0EOE1
+
+orange
+bgcolor #F57420
+panel #FB7C23
+txt #603423
 
 https://www.npmjs.com/package/bcrypt
 
